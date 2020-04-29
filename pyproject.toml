@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "prism-py"
+version = "0.1.0"
+description = "A parser for the PRISM (model checker) Language"
+authors = ["Anand Balakrishnan <anandbala1597@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+arpeggio = "^1.9.2"
+
+[tool.poetry.dev-dependencies]
+autoflake = "^1.3.1"
+black = "^19.10b0"
+codecov = "^2.0.22"
+flake8 = "^3.7.9"
+mypy = "^0.761"
+
+[build-system]
+requires = ["poetry-core>=1.0.0a5"]
+build-backend = "poetry.core.masonry.api"
