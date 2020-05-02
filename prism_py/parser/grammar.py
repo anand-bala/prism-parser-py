@@ -13,7 +13,6 @@ def skip(): return ZeroOrMore([DEFAULT_WS, comment])
 
 
 class Keywd(StrMatch):
-    _keyword_table = []
 
     def __init__(self, to_match):
         super(Keywd, self).__init__(to_match)
@@ -126,15 +125,12 @@ def ident(): return Not(reserved_keywords), _(r"[A-Za-z_][A-Za-z0-9_]*")
 
 
 class Builtin(StrMatch):
-    _builtin_table = []
 
     def __init__(self, to_match):
         super(Builtin, self).__init__(to_match)
         self.to_match = to_match
         self.root = True
         self.rule_name = "builtin"
-        if to_match not in Builtin._builtin_table:
-            Builtin._builtin_table.append(to_match)
 
 
 # fmt: off
@@ -183,8 +179,6 @@ def limp_op(): return "=>"
 #################
 # An expression can consist of literals (numbers), identifiers, and operations
 # on them (arithmetic, boolean, comparison, conditionals, and functions)
-
-# TODO: Left-associative rules can be fixed in post. Essentially all OneOrMore rules...
 
 # fmt: off
 def ArgumentExprList(): return ZeroOrMore(Expression, sep=",")
@@ -285,7 +279,6 @@ def Decl_InitBlock():
     return kw_init, Expression, kw_endinit
 
 
-# TODO: Module Renaming
 def Decl_Module():
     return kw_module, ident, [Module_Rename, Module_Content], kw_endmodule
 
